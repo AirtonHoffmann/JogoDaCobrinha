@@ -4,8 +4,9 @@ body {
 }
 
 .centralizar {
+    background-color: aqua;
     width: 680px;
-    height: 680px;
+    height: 884px;
     margin: auto;
 }
 
@@ -20,3 +21,20 @@ body {
     text-align: center;
     border-spacing: 1px;
 }
+
+.botao {
+    background-color: black;
+    box-shadow: 5px 5px 5px black;
+    font-size: 60px;
+    width: 68px;
+    height: 68px;
+
+}
+
+.display {
+    background-color: burlywood;
+    font-size: 60px;
+    width: 680px;
+    height: 68px;
+}
+

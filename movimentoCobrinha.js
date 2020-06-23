@@ -12,16 +12,16 @@ minhoca = new Array() //cobrinha
 
 //as proximas 8 linhas setam a posicao inicial da da cobrinha e da comida.
 //para uilizar a funcao que joga sozinha e presiso mudar onde tem 20 para 39
-indiceX = 20 
+indiceX = 10 
 indiceY = 3
-minhoca[0] = '20,1'
-minhoca[1] = '20,2'
-minhoca[2] = '20,3'
-comidaM = '20,20'
-mudarCor('20,1', '#ffffff')
-mudarCor('20,2', '#ffffff')
-mudarCor('20,3', '#ffffff')
-mudarCor('20,20', '#ff0000')
+minhoca[0] = '10,1'
+minhoca[1] = '10,2'
+minhoca[2] = '10,3'
+comidaM = '10,20'
+mudarCor('10,1', '#ffffff')
+mudarCor('10,2', '#ffffff')
+mudarCor('10,3', '#ffffff')
+mudarCor('10,20', '#ff0000')
 
 
 function mudarCor(id, cor){
@@ -57,7 +57,7 @@ function mudarDirecao(){
 }
 
 function comida(){
-    comidaM = `${Math.floor(Math.random() * 40)},${Math.floor(Math.random() * 40)}`
+    comidaM = `${Math.floor(Math.random() * 21)},${Math.floor(Math.random() * 40)}`
     if(minhoca.indexOf(comidaM, 0) != -1){
         comida()
     }
@@ -81,7 +81,7 @@ function mover(){
                 deslocar()
             break
         case 'x+':
-            if(++indiceX >= 40 || minhoca.indexOf(`${indiceX},${indiceY}`, 0) != -1)
+            if(++indiceX >= 21 || minhoca.indexOf(`${indiceX},${indiceY}`, 0) != -1)
                 alertarFimDeJogo()
             else
                 deslocar()
@@ -102,8 +102,10 @@ function mover(){
         mudarCor(minhoca[0], '#000000')
         minhoca.shift()
     }
-    setTimeout("mover()", velocidade);
+    //setTimeout("mover()", velocidade);
 }
+
+
 
 /*anterior = 42
 function teste (){
