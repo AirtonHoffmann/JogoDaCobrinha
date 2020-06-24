@@ -7,10 +7,10 @@
     <title>Minhoquinha</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
-<body id="body" onload="mover()" onkeypress="mudarDirecao()">
+<body id="body" onkeypress="mudarDirecao()">
     <div class="centralizar">
 
-        <div class="display"> <strong>&nbsp; 00:00:00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pts: 0000 </strong> </div>
+        <div class="display" id="display"> <strong>&nbsp; 00:00:00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pts: 0000 </strong> </div>
 
         <div id="20,0" class="p"></div><div id="20,1" class="p"></div><div id="20,2" class="p"></div><div id="20,3" class="p"></div><div id="20,4" class="p"></div>
         <div id="20,5" class="p"></div><div id="20,6" class="p"></div><div id="20,7" class="p"></div><div id="20,8" class="p"></div><div id="20,9" class="p"></div>
@@ -164,7 +164,7 @@
         <div id="4,25" class="p"></div><div id="4,26" class="p"></div><div id="4,27" class="p"></div><div id="4,28" class="p"></div><div id="4,29" class="p"></div>
         <div id="4,30" class="p"></div><div id="4,31" class="p"></div><div id="4,32" class="p"></div><div id="4,33" class="p"></div><div id="4,34" class="p"></div>
         <div id="4,35" class="p"></div><div id="4,36" class="p"></div><div id="4,37" class="p"></div><div id="4,38" class="p"></div><div id="4,39" class="p"></div>        
-
+        
         <div id="3,0" class="p"></div><div id="3,1" class="p"></div><div id="3,2" class="p"></div><div id="3,3" class="p"></div><div id="3,4" class="p"></div>
         <div id="3,5" class="p"></div><div id="3,6" class="p"></div><div id="3,7" class="p"></div><div id="3,8" class="p"></div><div id="3,9" class="p"></div>
         <div id="3,10" class="p"></div><div id="3,11" class="p"></div><div id="3,12" class="p"></div><div id="3,13" class="p"></div><div id="3,14" class="p"></div>
@@ -201,7 +201,8 @@
         <div id="0,30" class="p"></div><div id="0,31" class="p"></div><div id="0,32" class="p"></div><div id="0,33" class="p"></div><div id="0,34" class="p"></div>
         <div id="0,35" class="p"></div><div id="0,36" class="p"></div><div id="0,37" class="p"></div><div id="0,38" class="p"></div><div id="0,39" class="p"></div>
 
-        <div class="display"> <strong> w </strong> </div>
+        <div class="botaoStart" onclick="comecarJogo()"> <strong> Start </strong> </div>
+        <div class="botaoPause" onclick="pausarJogo()"> <strong> Pause </strong> </div>
 
     </div>
 

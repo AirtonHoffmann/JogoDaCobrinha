@@ -1,4 +1,18 @@
 /*OBSERVACAO: eu construi a logica das cordenadas invertidas, usei x para o eixo vertical e y para o eixo horizontal :) */
+jogando = false
+fimDeJogo = false
+
+intervalo = null
+movimento = null
+
+ss = 0
+mm = 0
+hh = 0
+
+pontos = 0
+incremento = 1
+count = 0
+controlador = 2
 
 click = false //serve para que nao seja possivel mudar para a direcao oposta
 indiceX = 0 //os idices concatenados formam a cordenada da cobrinha. Ja estao setados na posicao inicial
@@ -6,7 +20,6 @@ indiceY = 0
 direcao = 'y+'
 velocidade = 100
 crescimento = 0 //serve para controlar quantos quadradinhos a cobrinha cresce por vez
-pontos = 0
 inicio = new Date().getTime() //para cronometrar o jogo
 minhoca = new Array() //cobrinha
 
@@ -27,11 +40,6 @@ mudarCor('10,20', '#ff0000')
 function mudarCor(id, cor){
     quadrado = window.document.getElementById(id)
     quadrado.style.backgroundColor = cor
-}
-
-function alertarFimDeJogo(){
-    alert(`voce perdeu, Pontos: ${pontos}, Tempo: ${(new Date().getTime() - inicio)/1000}s`)
-    window.location.reload()
 }
 
 function deslocar(){
@@ -65,36 +73,42 @@ function comida(){
 }
 
 function mover(){
-    //teste ()
     click = false
     switch (direcao){
         case 'y+':
             if(++indiceY >= 40 || minhoca.indexOf(`${indiceX},${indiceY}`, 0) != -1)
-                alertarFimDeJogo()
+                acabou()
             else
                 deslocar()    
             break
         case 'y-':
             if(--indiceY < 0 || minhoca.indexOf(`${indiceX},${indiceY}`, 0) != -1)
-                alertarFimDeJogo()
+                acabou()
             else
                 deslocar()
             break
         case 'x+':
             if(++indiceX >= 21 || minhoca.indexOf(`${indiceX},${indiceY}`, 0) != -1)
-                alertarFimDeJogo()
+                acabou()
             else
                 deslocar()
             break
         case 'x-':
             if(--indiceX < 0 || minhoca.indexOf(`${indiceX},${indiceY}`, 0) != -1)
-                alertarFimDeJogo()
+                acabou()
             else
                 deslocar()
     }
     if(`${indiceX},${indiceY}` == comidaM){
         comida() 
-        pontos++
+        pontos = pontos + incremento
+        count++
+        atualizarInformacao()
+        if(count == controlador){
+            controlador++
+            incremento = incremento * 2
+            count = 0 
+        }
         crescimento = 1
     }else if(crescimento > 0 && crescimento <= 2){
         crescimento++
@@ -102,9 +116,55 @@ function mover(){
         mudarCor(minhoca[0], '#000000')
         minhoca.shift()
     }
-    //setTimeout("mover()", velocidade);
 }
 
+function timer() {
+    ss++; 
+    if (ss == 59) { 
+        ss = 0 
+        mm++ 
+        if (mm == 59) { 
+            mm = 0
+            hh++
+        }
+    }
+    atualizarInformacao()
+}
+
+function atualizarInformacao(){
+    textPontos = ''
+    if(pontos < 10){textPontos = '000'+pontos}
+    else if(pontos < 100){textPontos = '00'+pontos}
+    else if(pontos < 1000){textPontos = '0'+pontos}
+    else {textPontos = pontos}
+
+    format = '<strong>&nbsp; '+(hh < 10 ? '0' + hh : hh) + ':' + (mm < 10 ? '0' + mm : mm) + ':' + (ss < 10 ? '0' + ss : ss)+' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pts: '+textPontos+' </strong>'
+    document.getElementById('display').innerHTML = format
+}
+
+function comecarJogo(){
+    if(fimDeJogo == false){
+        if(jogando == false){
+            jogando = true
+            intervalo = setInterval(() => { timer(); }, 1000)
+            movimento = setInterval(() => { mover(); }, 100)
+        }
+    }else{
+        document.location.reload()
+    }
+}
+
+function pausarJogo(){
+    jogando = false
+    clearInterval(intervalo)
+    clearInterval(movimento)
+}
+
+function acabou(){
+    fimDeJogo = true
+    clearInterval(intervalo)
+    clearInterval(movimento)
+}
 
 
 /*anterior = 42
