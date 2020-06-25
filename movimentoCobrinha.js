@@ -20,7 +20,6 @@ indiceY = 0
 direcao = 'y+'
 velocidade = 100
 crescimento = 0 //serve para controlar quantos quadradinhos a cobrinha cresce por vez
-inicio = new Date().getTime() //para cronometrar o jogo
 minhoca = new Array() //cobrinha
 
 //as proximas 8 linhas setam a posicao inicial da da cobrinha e da comida.
@@ -47,11 +46,17 @@ function deslocar(){
     mudarCor(minhoca[minhoca.length -1], '#ffffff') 
 }
 
-function mudarDirecao(){
+function mudarDirecao(origem){
+
+    teclaPrecionada = null
+
+    if(origem == 777)
+        teclaPrecionada = event.keyCode
+    else
+        teclaPrecionada = origem
+
     if(click == false){
         click = true
-
-        teclaPrecionada = event.keyCode
 
         if(direcao != 'x+' && teclaPrecionada == 115)
             direcao = 'x-'
@@ -62,6 +67,10 @@ function mudarDirecao(){
         else if(direcao != 'y-' && teclaPrecionada == 100)
             direcao = 'y+'
     }
+    if(teclaPrecionada == 13)
+        comecarJogo()
+    else if(teclaPrecionada == 32)
+        pausarJogo()
 }
 
 function comida(){
@@ -76,26 +85,46 @@ function mover(){
     click = false
     switch (direcao){
         case 'y+':
-            if(++indiceY >= 40 || minhoca.indexOf(`${indiceX},${indiceY}`, 0) != -1)
+            ++indiceY
+            if(minhoca.indexOf(`${indiceX},${indiceY}`, 0) != -1)
                 acabou()
+            else if(indiceY >= 40){
+                indiceY = 0
+                deslocar()
+            } 
             else
                 deslocar()    
             break
         case 'y-':
-            if(--indiceY < 0 || minhoca.indexOf(`${indiceX},${indiceY}`, 0) != -1)
+            --indiceY
+            if(minhoca.indexOf(`${indiceX},${indiceY}`, 0) != -1)
                 acabou()
+            else if(indiceY < 0){
+                indiceY = 39
+                deslocar()
+            }
             else
                 deslocar()
             break
         case 'x+':
-            if(++indiceX >= 21 || minhoca.indexOf(`${indiceX},${indiceY}`, 0) != -1)
+            ++indiceX
+            if(minhoca.indexOf(`${indiceX},${indiceY}`, 0) != -1)
                 acabou()
+            else if(indiceX >= 21){
+                indiceX = 0
+                deslocar()
+            }
             else
                 deslocar()
             break
         case 'x-':
-            if(--indiceX < 0 || minhoca.indexOf(`${indiceX},${indiceY}`, 0) != -1)
+            --indiceX
+            if(minhoca.indexOf(`${indiceX},${indiceY}`, 0) != -1)
                 acabou()
+            else if(indiceX < 0){
+                indiceX = 20
+                deslocar()
+            }
             else
                 deslocar()
     }
@@ -133,12 +162,23 @@ function timer() {
 
 function atualizarInformacao(){
     textPontos = ''
-    if(pontos < 10){textPontos = '000'+pontos}
-    else if(pontos < 100){textPontos = '00'+pontos}
-    else if(pontos < 1000){textPontos = '0'+pontos}
-    else {textPontos = pontos}
+    if(pontos < 10){
+        textPontos = '0000'+pontos
+    }
+    else if(pontos < 100){
+        textPontos = '000'+pontos
+    }
+    else if(pontos < 1000){
+        textPontos = '00'+pontos
+    }
+    else if(pontos < 10000){
+        textPontos = '0'+pontos
+    }
+    else {
+        textPontos = pontos
+    }
 
-    format = '<strong>&nbsp; '+(hh < 10 ? '0' + hh : hh) + ':' + (mm < 10 ? '0' + mm : mm) + ':' + (ss < 10 ? '0' + ss : ss)+' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pts: '+textPontos+' </strong>'
+    format = '&nbsp;'+(hh < 10 ? '0' + hh : hh) + ':' + (mm < 10 ? '0' + mm : mm) + ':' + (ss < 10 ? '0' + ss : ss)+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pts:'+textPontos
     document.getElementById('display').innerHTML = format
 }
 
@@ -147,7 +187,7 @@ function comecarJogo(){
         if(jogando == false){
             jogando = true
             intervalo = setInterval(() => { timer(); }, 1000)
-            movimento = setInterval(() => { mover(); }, 100)
+            movimento = setInterval(() => { mover(); }, velocidade)
         }
     }else{
         document.location.reload()
@@ -185,28 +225,3 @@ function gameOver(){
         mudarCor(gO[i], '#ffffff')
     }
 }
-/*anterior = 42
-function teste (){
-    if(anterior == 39){
-        direcao = 'y-'
-        anterior = 42
-    }else if(anterior == 1){
-        direcao = 'y+'
-        anterior = 42
-    }else{
-        if(indiceX == 0 && indiceY == 0){
-            direcao = 'x+'
-        }
-        if(indiceX == 39 && indiceY == 0){
-            direcao = 'y+'
-        }
-        else if(indiceY == 39){
-            direcao = 'x-'
-            anterior = 39
-        }
-        else if(indiceY == 1 && indiceX != 0 && indiceX != 39){
-            direcao = 'x-'
-            anterior = 1
-        }
-    }
-}*/

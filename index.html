@@ -7,10 +7,10 @@
     <title>Minhoquinha</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
-<body id="body" onkeypress="mudarDirecao()">
+<body id="body" onkeypress="mudarDirecao(777)">
     <div class="centralizar">
 
-        <div class="display" id="display"> <strong>&nbsp; 00:00:00 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pts: 0000 </strong> </div>
+        <div class="display" id="display"> &nbsp;00:00:00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pts:00000</div>
 
         <div id="20,0" class="p"></div><div id="20,1" class="p"></div><div id="20,2" class="p"></div><div id="20,3" class="p"></div><div id="20,4" class="p"></div>
         <div id="20,5" class="p"></div><div id="20,6" class="p"></div><div id="20,7" class="p"></div><div id="20,8" class="p"></div><div id="20,9" class="p"></div>
@@ -201,9 +201,14 @@
         <div id="0,30" class="p"></div><div id="0,31" class="p"></div><div id="0,32" class="p"></div><div id="0,33" class="p"></div><div id="0,34" class="p"></div>
         <div id="0,35" class="p"></div><div id="0,36" class="p"></div><div id="0,37" class="p"></div><div id="0,38" class="p"></div><div id="0,39" class="p"></div>
 
-        <div class="botaoStart" onclick="comecarJogo()"> <strong> Start </strong> </div>
-        <div class="botaoPause" onclick="pausarJogo()"> <strong> Pause </strong> </div>
+        <div class="botaoStart" onclick="comecarJogo()"> <img src="imagens/start.png" alt=""> </div>
+        <div class="botaoPause" onclick="pausarJogo()"> <img src="imagens/pause.png" alt=""> </div>
 
+        <div class="botaoW" onclick="mudarDirecao(119)"> <img src="imagens/w.png" alt=""> </div>
+        <div class="botaoA" onclick="mudarDirecao(97)"> <img src="imagens/a.png" alt=""> </div>
+        <div class="botaoS" onclick="mudarDirecao(115)"> <img src="imagens/s.png" alt=""> </div>
+        <div class="botaoD" onclick="mudarDirecao(100)"> <img src="imagens/d.png" alt=""> </div>
+        
     </div>
 
     <script src="movimentoCobrinha.js"></script>

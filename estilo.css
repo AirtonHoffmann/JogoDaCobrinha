@@ -6,8 +6,11 @@ body {
 .centralizar {
     background-color: gray;
     width: 680px;
-    height: 884px;
+    height: 715px;
     margin: auto;
+    border-style: solid;
+    border-width: 30px;
+    border-color: grey;
 }
 
 .p {
@@ -23,31 +26,64 @@ body {
 }
 
 .botaoStart {
-    background-color: #C0C0C0;
     box-shadow: 5px 5px 5px black;
     width: 150px;
     height: 75px;
     float: left;
-    text-align: center;
     margin: 25px;
-    font-size: 50px;
 }
 
 .botaoPause {
-    background-color: #C0C0C0;
     box-shadow: 5px 5px 5px black;
     width: 150px;
     height: 75px;
     float: right;
-    text-align: center;
     margin: 25px;
-    font-size: 50px;
 }
 
 .display {
-    background-color: white;
-    font-size: 60px;
-    width: 680px;
-    height: 68px;
+    border-style: solid;
+    border-width: 4px;
+    border-color: white;
+    background-color: black;
+    color: #00ff00;
+    font-family: monospace;
+    font-size: 50px;
+    width: 672px;
+    height: 60px;
 }
 
+.botaoW {
+    box-shadow: 5px 5px 5px black;
+    width: 100px;
+    height: 75px;
+    margin-left: 270px;
+    margin-top: 475px;
+}
+
+.botaoA {
+    box-shadow: 5px 5px 5px black;
+    width: 100px;
+    height: 75px;
+    float: left;
+    margin-top: 10px;
+    margin-left: 180px;
+}
+
+.botaoS {
+    box-shadow: 5px 5px 5px black;
+    width: 100px;
+    height: 75px;
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.botaoD {
+    box-shadow: 5px 5px 5px black;
+    width: 100px;
+    height: 75px;
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+}
