@@ -25,6 +25,12 @@ body {
     border-spacing: 1px;
 }
 
+.tela {
+    width: 680px;
+    height: 357px;
+    float: left;
+}
+
 .botaoStart {
     box-shadow: 5px 5px 5px black;
     width: 150px;
